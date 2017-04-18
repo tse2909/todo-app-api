@@ -44,6 +44,6 @@ app.get('/getProducts', function(request,response) {
 });
 
 
-app.listen(process.env.PORT | 8080, function(){
+app.listen(process.env.PORT || 8080, function(){
   console.log("Listening")
 });
