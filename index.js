@@ -4,7 +4,8 @@ const app = express();
 var WooCommerceAPI = require('woocommerce-api');
 
 var WooCommerce = new WooCommerceAPI({
-  url: 'http://localhost/beautyshop',
+  // url: 'http://localhost/beautyshop',
+  url: 'http://hostingtrial.esy.es',
   consumerKey: 'ck_b7f92ab36f70d3517d86dc855e04b9d41b6d8277',
   consumerSecret: 'cs_54ffc64bc91b4d7630c06161acf22532de1fcf53',
   wpAPI: true,
@@ -40,7 +41,9 @@ app.get('/getProducts', function(request,response) {
     }
   });
 
-})
-app.listen(3000, function(){
+});
+
+
+app.listen(process.env.PORT | 8080, function(){
   console.log("Listening")
 });
