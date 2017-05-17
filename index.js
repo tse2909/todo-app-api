@@ -33,7 +33,7 @@ app.use(function (req, res, next) {
 });
 app.get('/getProducts', function (request, response) {
 
-  WooCommerce.get('products?per_page=10000', function (err, data, res) {
+  WooCommerce.get('products?per_page=100', function (err, data, res) {
     if (err) {
       response.send(err)
     } else {
