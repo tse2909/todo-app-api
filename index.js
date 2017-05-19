@@ -5,9 +5,9 @@ var WooCommerceAPI = require('woocommerce-api');
 
 var WooCommerce = new WooCommerceAPI({
   // url: 'http://localhost/beautyshop',
-  url: 'http://hostingtrial.esy.es',
-  consumerKey: 'ck_b7f92ab36f70d3517d86dc855e04b9d41b6d8277',
-  consumerSecret: 'cs_54ffc64bc91b4d7630c06161acf22532de1fcf53',
+  url: 'http://techdaily.esy.es',
+  consumerKey: 'ck_8c862b7a2b67e174aae4229e59ffb6987026155d',
+  consumerSecret: 'cs_0a0e8037f0f53e905d3106efff328fa19dde501e',
   wpAPI: true,
   version: 'wc/v1'
 });
