@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-
+const bodyParser = require('body-parser');
 var WooCommerceAPI = require('woocommerce-api');
 
 var WooCommerce = new WooCommerceAPI({
@@ -12,6 +12,10 @@ var WooCommerce = new WooCommerceAPI({
   version: 'wc/v1'
 });
 
+app.use(bodyParser.urlencoded({
+    extended: false
+})); // Parses urlencoded bodies
+app.use(bodyParser.json()); // Send JSON responses
 
 app.use(function (req, res, next) {
 
@@ -31,25 +35,26 @@ app.use(function (req, res, next) {
   // Pass to next layer of middleware
   next();
 });
-app.get('/getProducts', function (req, res) {
+app.get('/getProducts', function (request, response) {
 
-  WooCommerce.get('products?per_page=100', function (err, data) {
+  WooCommerce.get('products?per_page=100', function (err, data, res) {
     if (err) {
-      res.send(err)
+      response.send(err)
     } else {
-      res.json(data)
+      response.json(data)
     }
   });
 
 });
 
-app.post('/postOrders', function (req, res) {
-  console.log(req.body.data);
-  WooCommerce.post('orders', req.body.data, function (err, data) {
+app.post('/postOrders', function (request, response) {
+  console.log(request.body.data);
+  WooCommerce.post('orders', request.body.data, function (err, data, res) {
+    console.log(res);
     if (err) {
-      res.send(err)
+      response.send(err)
     } else {
-      res.json(data)
+      response.json(data)
     }
   });
 })
