@@ -73,7 +73,9 @@ var data = {
     city: 'San Francisco',
     state: 'CA',
     postcode: '94103',
-    country: 'US'
+    country: 'US',
+    email: 'john.doe@example.com',
+    phone: '(555) 555-5555'
   },
   line_items: [
     {
