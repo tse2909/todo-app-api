@@ -43,8 +43,8 @@ app.get('/getProducts', function (request, response) {
 
 });
 
-app.post('postOrders', function (request, response) {
-  WooCommerce.post('orders', data, function (err, data, res) {
+app.post('/postOrders', function (request, response) {
+  WooCommerce.post('orders', request.data, function (err, data, res) {
     console.log(res);
     if (err) {
       response.send(err)
