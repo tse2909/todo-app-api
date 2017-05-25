@@ -31,26 +31,26 @@ app.use(function (req, res, next) {
   // Pass to next layer of middleware
   next();
 });
-app.get('/getProducts', function (request, response) {
+app.get('/getProducts', function (req, res) {
 
   WooCommerce.get('products?per_page=100', function (err, data, res) {
     if (err) {
-      response.send(err)
+      res.send(err)
     } else {
-      response.json(data)
+      res.json(data)
     }
   });
 
 });
 
-app.post('/postOrders', function (request, response) {
-  console.log(request.body.data);
-  WooCommerce.post('orders', request.body.data, function (err, data, res) {
+app.post('/postOrders', function (req, res) {
+  console.log(req.body.data);
+  WooCommerce.post('orders', req.body.data, function (err, data, res) {
     console.log(res);
     if (err) {
-      response.send(err)
+      res.send(err)
     } else {
-      response.json(data)
+      res.json(data)
     }
   });
 })
