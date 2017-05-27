@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 var WooCommerceAPI = require('woocommerce-api');
-
+var ongkir = require('./ongkir');
 var WooCommerce = new WooCommerceAPI({
   // url: 'http://localhost/beautyshop',
   url: 'http://techdaily.esy.es',
@@ -13,7 +13,7 @@ var WooCommerce = new WooCommerceAPI({
 });
 
 app.use(bodyParser.urlencoded({
-    extended: false
+  extended: false
 })); // Parses urlencoded bodies
 app.use(bodyParser.json()); // Send JSON responses
 
@@ -36,6 +36,67 @@ app.use(function (req, res, next) {
   next();
 });
 
+
+var dataObj = {
+        origin: '501', // tipe string id kota atau kecamatan 
+        destination: '48', // tipe string id kota atau kecamatan 
+        weight:'2220' // tipe string berat kiriman 
+        }
+
+
+
+app.get('/getAllProvince', function (req, res) {
+  var a = ongkir.getAllProvince()
+  a.then(function (data) {
+    res.send(data['rajaongkir']['results'])
+    res.end()
+  })
+});
+
+app.get('/getAllCities', function (req, res) {
+  var a = ongkir.getCities()
+  a.then(function (data) {
+    res.send(data['rajaongkir']['results'])
+    res.end()
+  })
+});
+
+app.get('/getCity/:id', function (req, res) {
+  var a = ongkir.getCity(req.params.id)
+  a.then(function (data) {
+    res.send(data['rajaongkir']['results'])
+    res.end()
+  })
+});
+
+
+app.get('/getAllSubdistricts', function (req, res) {
+  var a = ongkir.getSubdistricts();
+  a.then(function (data) {
+    res.send(data['rajaongkir']['results'])
+    res.end()
+  })
+});
+
+
+app.get('/province/:id', function (req, res) {
+  console.log(req.params.id);
+  var a = ongkir.getProvince(req.params.id)
+  a.then(function (data) {
+    res.send(data['rajaongkir']['results'])
+    res.end()
+  })
+});
+
+
+app.get('/getCost', function (req, res) {
+  console.log(req.params.id);
+  var a = ongkir.getCost(dataObj)
+  a.then(function (data) {
+    res.send(data['rajaongkir']['results'])
+    res.end()
+  })
+});
 
 app.get('/getProducts', function (request, response) {
 
