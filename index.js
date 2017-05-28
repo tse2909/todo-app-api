@@ -89,9 +89,9 @@ app.get('/province/:id', function (req, res) {
 });
 
 
-app.get('/getCost', function (req, res) {
-  console.log(req.params.id);
-  var a = ongkir.getCost(dataObj)
+app.post('/getCost', function (req, res) {
+  console.log(req.body.data);
+  var a = ongkir.getCost(req.body.data)
   a.then(function (data) {
     res.send(data['rajaongkir']['results'])
     res.end()
